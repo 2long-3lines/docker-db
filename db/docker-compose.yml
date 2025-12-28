@@ -1,0 +1,9 @@
+services:
+  alpine:
+    image: alpine:latest
+    command: "true"
+    networks:
+      - db-net
+networks:
+  db-net:
+    name: db-net

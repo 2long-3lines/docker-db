@@ -1,0 +1,18 @@
+services:
+  postgres-setup:
+    image: postgres:18-alpine
+    volumes:
+      - ../db/postgres-setup.sh:/postgres-setup.sh
+    environment:
+      - PGHOST=postgres18
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=app_password
+    networks:
+      - db-net
+    entrypoint: ["/bin/sh", "/postgres-setup.sh"]
+networks:
+  db-net:
+    external: true

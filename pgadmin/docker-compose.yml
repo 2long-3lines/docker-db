@@ -1,0 +1,22 @@
+services:
+  pgadmin:
+      image: dpage/pgadmin4:latest
+      environment:
+        SCRIPT_NAME: /pgadmin
+        VIRTUAL_HOST: localhost
+        LETSENCRYPT_HOST: localhost
+        VIRTUAL_PATH: /pgadmin/
+        PGADMIN_DEFAULT_EMAIL: devteds@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: devteds      
+        PGADMIN_CONFIG_WTF_CSRF_HEADERS: '["Referer", "Origin"]'
+        PGADMIN_CONFIG_WTF_CSRF_ENABLED: 'False'
+      # volumes:
+      #   - ./data:/var/lib/pgadmin
+      networks:
+        - shared-net
+        - db-net
+networks:
+  shared-net:
+    external: true
+  db-net:
+    external: true
